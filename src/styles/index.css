@@ -41,17 +41,22 @@
   }
 }
 
-/* Reveal-on-scroll: starts hidden, .is-visible flips it in */
+/* Reveal-on-scroll: elements drift up + sharpen from a soft blur, settling
+   gently rather than snapping. A soft ease-out keeps it calm and premium. */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(22px) scale(0.985);
+  filter: blur(6px);
+  will-change: opacity, transform, filter;
   transition:
-    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 [data-reveal].is-visible {
   opacity: 1;
   transform: none;
+  filter: blur(0);
 }
 
 @media (prefers-reduced-motion: reduce) {

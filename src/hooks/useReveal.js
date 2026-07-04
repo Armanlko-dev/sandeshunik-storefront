@@ -29,7 +29,9 @@ export function useReveal(deps = []) {
           }
         })
       },
-      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+      // Trigger a little before the element is fully on screen so it eases in
+      // as it enters rather than after it's already sitting there.
+      { threshold: 0.05, rootMargin: '0px 0px -12% 0px' }
     )
 
     document.querySelectorAll('[data-reveal]').forEach((el) => {
